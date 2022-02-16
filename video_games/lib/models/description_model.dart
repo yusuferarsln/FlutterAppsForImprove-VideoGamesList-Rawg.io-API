@@ -40,7 +40,7 @@ class descriptionGenerated {
   int? parentsCount;
   int? additionsCount;
   int? gameSeriesCount;
-  Null? userGame;
+  Null userGame;
   int? reviewsCount;
   String? saturatedColor;
   String? dominantColor;
@@ -48,7 +48,7 @@ class descriptionGenerated {
   List<Developers>? developers;
   List<Tags>? tags;
   Platform? esrbRating;
-  Null? clip;
+  Null clip;
   String? descriptionRaw;
 
   descriptionGenerated(
@@ -114,7 +114,7 @@ class descriptionGenerated {
     if (json['metacritic_platforms'] != null) {
       metacriticPlatforms = <MetacriticPlatforms>[];
       json['metacritic_platforms'].forEach((v) {
-        metacriticPlatforms!.add(new MetacriticPlatforms.fromJson(v));
+        metacriticPlatforms!.add( MetacriticPlatforms.fromJson(v));
       });
     }
     released = json['released'];
@@ -128,15 +128,15 @@ class descriptionGenerated {
     if (json['ratings'] != null) {
       ratings = <Ratings>[];
       json['ratings'].forEach((v) {
-        ratings!.add(new Ratings.fromJson(v));
+        ratings!.add( Ratings.fromJson(v));
       });
     }
     reactions = json['reactions'] != null
-        ? new Reactions.fromJson(json['reactions'])
+        ?  Reactions.fromJson(json['reactions'])
         : null;
     added = json['added'];
     addedByStatus = json['added_by_status'] != null
-        ? new AddedByStatus.fromJson(json['added_by_status'])
+        ?  AddedByStatus.fromJson(json['added_by_status'])
         : null;
     playtime = json['playtime'];
     screenshotsCount = json['screenshots_count'];
@@ -167,32 +167,32 @@ class descriptionGenerated {
     if (json['stores'] != null) {
       stores = <Stores>[];
       json['stores'].forEach((v) {
-        stores!.add(new Stores.fromJson(v));
+        stores!.add( Stores.fromJson(v));
       });
     }
     if (json['developers'] != null) {
       developers = <Developers>[];
       json['developers'].forEach((v) {
-        developers!.add(new Developers.fromJson(v));
+        developers!.add( Developers.fromJson(v));
       });
     }
 
     if (json['tags'] != null) {
       tags = <Tags>[];
       json['tags'].forEach((v) {
-        tags!.add(new Tags.fromJson(v));
+        tags!.add( Tags.fromJson(v));
       });
     }
 
     esrbRating = json['esrb_rating'] != null
-        ? new Platform.fromJson(json['esrb_rating'])
+        ?  Platform.fromJson(json['esrb_rating'])
         : null;
     clip = json['clip'];
     descriptionRaw = json['description_raw'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['id'] = this.id;
     data['slug'] = this.slug;
     data['name'] = this.name;
@@ -306,7 +306,7 @@ class Platform {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['name'] = this.name;
     data['slug'] = this.slug;
     return data;
@@ -329,7 +329,7 @@ class Ratings {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['id'] = this.id;
     data['title'] = this.title;
     data['count'] = this.count;
@@ -400,7 +400,7 @@ class Reactions {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['1'] = this.i1;
     data['2'] = this.i2;
     data['3'] = this.i3;
@@ -472,7 +472,7 @@ class Requirements {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['minimum'] = this.minimum;
     data['recommended'] = this.recommended;
     return data;
@@ -489,11 +489,11 @@ class Stores {
   Stores.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     url = json['url'];
-    store = json['store'] != null ? new Store.fromJson(json['store']) : null;
+    store = json['store'] != null ?  Store.fromJson(json['store']) : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['id'] = this.id;
     data['url'] = this.url;
     if (this.store != null) {
@@ -529,7 +529,7 @@ class Store {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
     data['slug'] = this.slug;
@@ -559,7 +559,7 @@ class Developers {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
     data['slug'] = this.slug;
@@ -595,7 +595,7 @@ class Tags {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data =  Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
     data['slug'] = this.slug;

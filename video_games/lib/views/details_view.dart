@@ -4,11 +4,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:video_games/models/description_model.dart';
-import 'package:video_games/views/favorites_view.dart';
 
 class DetailsPage extends StatefulWidget {
   final String id;
-  const DetailsPage({Key? key, required this.id}) : super(key: key);
+  final String page;
+  const DetailsPage({Key? key, required this.id, required this.page})
+      : super(key: key);
 
   @override
   State<DetailsPage> createState() => _DetailsPageState();
@@ -27,7 +28,7 @@ String? gameImage;
 class _DetailsPageState extends State<DetailsPage> {
   Future<descriptionGenerated> apiCall() async {
     final response = await http.get(Uri.parse(
-        'https://api.rawg.io/api/games/${widget.id}?key=5ac29048d12d45d0949c77038115cb56'));
+        'https://api.rawg.io/api/games/${widget.id}?key=5ac29048d12d45d0949c77038115cb56&${widget.page}'));
     return descriptionGenerated.fromJson(jsonDecode(response.body));
   }
 
@@ -53,86 +54,84 @@ class _DetailsPageState extends State<DetailsPage> {
 
   FutureBuilder<descriptionGenerated> detailsFutureBuilder() {
     return FutureBuilder<descriptionGenerated>(
-          future: apiCall(),
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
-            descriptionGenerated? data = snapshot.data;
-            String? image = data!.backgroundImage;
+        future: apiCall(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          descriptionGenerated? data = snapshot.data;
+          String? image = data!.backgroundImage;
 
-            gameN = data.name;
-            game.add(data.name);
-            gameImage = data.backgroundImage;
-            gameImages.add(data.backgroundImage);
+          gameN = data.name;
+          game.add(data.name);
+          gameImage = data.backgroundImage;
+          gameImages.add(data.backgroundImage);
 
-            uniqueImages = gameImages.toSet().toList();
-            uniqueGames = game.toSet().toList();
+          uniqueImages = gameImages.toSet().toList();
+          uniqueGames = game.toSet().toList();
 
-            if (snapshot.hasData == false) {
-              return CircularProgressIndicator();
-            } else {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Stack(
+          if (snapshot.hasData == false) {
+            return CircularProgressIndicator();
+          } else {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stack(
+                  children: [
+                    Container(
+                        child: CachedNetworkImage(
+                      imageUrl: image.toString(),
+                      errorWidget: (context, url, error) => Icon(Icons.error),
+                      placeholder: (context, url) => Container(
+                        child: Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    )),
+                    likeButton()
+                  ],
+                ),
+                Card(
+                  child: Column(
                     children: [
-                      Container(
-                          child: CachedNetworkImage(
-                        imageUrl: image.toString(),
-                        errorWidget: (context, url, error) =>
-                            Icon(Icons.error),
-                        placeholder: (context, url) => Container(
-                          child: Center(
-                            child: CircularProgressIndicator(),
+                      Align(
+                        alignment: Alignment.bottomLeft,
+                        child: Text(
+                          '${data.name}',
+                          style: TextStyle(
+                            fontSize: 30,
                           ),
                         ),
-                      )),
-                      likeButton()
-                    ],
-                  ),
-                  Card(
-                    child: Column(
-                      children: [
-                        Align(
+                      ),
+                      Align(
                           alignment: Alignment.bottomLeft,
                           child: Text(
-                            '${data.name}',
-                            style: TextStyle(
-                              fontSize: 30,
-                            ),
-                          ),
-                        ),
-                        Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              'Released Date : ${data.released}',
-                              style: TextStyle(fontSize: 20),
-                            )),
-                        Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                              'Metacritic Rate : ${data.metacritic}',
-                              style: TextStyle(fontSize: 16),
-                            )),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
+                            'Released Date : ${data.released}',
+                            style: TextStyle(fontSize: 20),
+                          )),
+                      Align(
+                          alignment: Alignment.bottomLeft,
                           child: Text(
-                            '${data.descriptionRaw}',
-                            style: TextStyle(fontSize: 17),
-                          ),
+                            'Metacritic Rate : ${data.metacritic}',
+                            style: TextStyle(fontSize: 16),
+                          )),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          '${data.descriptionRaw}',
+                          style: TextStyle(fontSize: 17),
                         ),
-                      ],
-                    ),
-                  )
-                ],
-              );
-            }
-          });
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            );
+          }
+        });
   }
 
   Positioned likeButton() {
-
     if (liked == false) {
       liked = false;
       return Positioned(

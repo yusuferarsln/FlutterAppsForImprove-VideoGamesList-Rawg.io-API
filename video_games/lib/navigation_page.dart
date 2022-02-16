@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:video_games/views/details_view.dart';
 import 'package:video_games/views/favorites_view.dart';
 import 'package:video_games/views/homepage_view.dart';
 

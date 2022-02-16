@@ -53,6 +53,7 @@ class _FavoritePageState extends State<FavoritePage> {
         List imageList = listofDocumentSnap[0]['image'];
 
         return ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
           shrinkWrap: true,
           itemCount: list.length,
           itemBuilder: (context, index) {
