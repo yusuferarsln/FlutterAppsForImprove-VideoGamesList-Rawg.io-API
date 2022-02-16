@@ -1,16 +1,26 @@
 # video_games
 
-A new Flutter project.
+This is a Flutter project works with firebase and api.
+In this application users can list the games from api.
+Users can see the details of the games. (released date, rating , description etc.)
+Users can add/remove games to their favorites.
 
-## Getting Started
+Screenshots of application
+<div align="center">
+    <img src="lib/screenshots/vg_1.png" width="200px"</img> 
+  <img src="lib/screenshots/vg_2.png" width="200px"</img> 
+  <img src="lib/screenshots/vg_3.png" width="200px"</img> 
+</div>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Packages that i use 
+<div align="left">
+  <ul>
+    <li>firebase_core: ^1.12.0</li>
+  <li>cloud_firestore: ^3.1.8</li>
+  <li>http: ^0.13.4</li>
+  <li>carousel_slider: ^4.0.0</li>
+  <li>cached_network_image: ^3.2.0</li>
+  <li>get: ^4.6.1</li>
+  <li>flutter_cache_manager: ^3.3.0</li>
+  </ul>
+</div>
