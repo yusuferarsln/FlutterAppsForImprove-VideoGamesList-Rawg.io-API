@@ -24,9 +24,9 @@ class _NavigationPageState extends State<NavigationPage> {
       body: screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         selectedItemColor: Colors.red,
-        unselectedItemColor: Colors.black,
+        unselectedItemColor: Colors.white,
         currentIndex: currentIndex,
         showUnselectedLabels: false,
         onTap: (index) => setState(() {

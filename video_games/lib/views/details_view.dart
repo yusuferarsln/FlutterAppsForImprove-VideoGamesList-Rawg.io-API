@@ -147,8 +147,9 @@ class _DetailsPageState extends State<DetailsPage> {
             });
           },
           child: Icon(
-            Icons.thumb_up,
+            Icons.favorite,
             size: 35,
+            color: Colors.white,
           ),
         ),
         right: 20,
@@ -170,7 +171,7 @@ class _DetailsPageState extends State<DetailsPage> {
             });
           },
           child: Icon(
-            Icons.thumb_up,
+            Icons.favorite,
             size: 35,
             color: Colors.red,
           ),

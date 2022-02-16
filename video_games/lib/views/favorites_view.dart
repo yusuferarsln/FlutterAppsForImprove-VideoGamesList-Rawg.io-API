@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:video_games/models/description_model.dart';
@@ -59,7 +60,8 @@ class _FavoritePageState extends State<FavoritePage> {
               title: Text('${list[index]}'),
               leading: CircleAvatar(
                   maxRadius: 30,
-                  backgroundImage: NetworkImage('${imageList[index]}')),
+                  backgroundImage:
+                      CachedNetworkImageProvider('${imageList[index]}')),
             );
           },
         );
